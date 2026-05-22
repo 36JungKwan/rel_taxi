@@ -105,16 +105,22 @@ tab1, tab2 = st.tabs([ "🎮 Chơi Trực Tiếp (Tài Xế Thực Tập)","🔬
 
 # --- TAB 1: PHÂN TÍCH AI ---
 with tab2:
-    st.markdown("💡 **Điểm hay nhất của bài toán này:** AI tự động thay đổi mục tiêu. Nếu chưa có khách, mũi tên chỉ về điểm đón. Khi có khách rồi, mũi tên lập tức đổi hướng chỉ về điểm trả!")
-    col_pi0, col_pi1 = st.columns(2)
-    with col_pi0:
-        st.subheader("1. La bàn khi CHƯA CÓ khách 🧍")
-        df_pi0 = pd.DataFrame(Pi_star[:, :, 0], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
-        st.dataframe(df_pi0, use_container_width=True)
-    with col_pi1:
-        st.subheader("2. La bàn khi ĐÃ ĐÓN khách 🚖")
-        df_pi1 = pd.DataFrame(Pi_star[:, :, 1], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
-        st.dataframe(df_pi1, use_container_width=True)
+    st.markdown("💡 **Phân tích toán học:** Khi không gian trạng thái mở rộng thành 3 chiều, bộ não AI sẽ tự động định giá lại toàn bộ bản đồ dựa trên điều kiện của môi trường thay đổi.")
+    
+    # --- TẦNG 1: BẢN ĐỒ NHIỆT VALUE FUNCTION V* ---
+    st.markdown(r"### 📊 1. Hàm Giá Trị Tối Ưu $V^*$ (Sự lan truyền tri thức phần thưởng)")
+    col_v0, col_v1 = st.columns(2)
+    with col_v0:
+        st.markdown("**Khi CHƯA CÓ khách 🧍** (Điểm cao nhất tích tụ xung quanh trạm đón khách ở ô [0,0])")
+        df_v0 = pd.DataFrame(V_star[:, :, 0], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
+        st.dataframe(df_v0.style.background_gradient(cmap="Purples", axis=None).format("{:.1f}"), use_container_width=True)
+        
+    with col_v1:
+        st.markdown("**Khi ĐÃ ĐÓN khách 🚖** (Điểm số rực sáng và tăng dần về phía đích đến ở ô [4,4])")
+        df_v1 = pd.DataFrame(V_star[:, :, 1], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
+        st.dataframe(df_v1.style.background_gradient(cmap="YlOrBr", axis=None).format("{:.1f}"), use_container_width=True)
+        
+    st.markdown("---")
 
 # --- TAB 2: CHẾ ĐỘ NGƯỜI CHƠI ---
 with tab1:
