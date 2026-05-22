@@ -122,6 +122,18 @@ with tab2:
         
     st.markdown("---")
 
+    # --- TẦNG 2: LA BÀN CHÍNH SÁCH PI* ---
+    st.markdown(r"### 🧭 2. Chiến Thuật Tối Ưu $\pi_*$ (Nước đi được rút trích bằng toán tử argmax)")
+    col_pi0, col_pi1 = st.columns(2)
+    with col_pi0:
+        st.markdown("**La bàn định hướng khi CHƯA CÓ khách**")
+        df_pi0 = pd.DataFrame(Pi_star[:, :, 0], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
+        st.dataframe(df_pi0, use_container_width=True)
+    with col_pi1:
+        st.markdown("**La bàn định hướng khi ĐÃ ĐÓN khách**")
+        df_pi1 = pd.DataFrame(Pi_star[:, :, 1], columns=[f"Cột {i}" for i in range(5)], index=[f"Hàng {i}" for i in range(5)])
+        st.dataframe(df_pi1, use_container_width=True)
+
 # --- TAB 2: CHẾ ĐỘ NGƯỜI CHƠI ---
 with tab1:
     st.subheader("Bảng Điều Khiển Taxi 🚕")
